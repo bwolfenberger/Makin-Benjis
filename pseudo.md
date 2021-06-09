@@ -1,0 +1,8 @@
+- Setup
+- Pull data from api
+- Display stock prices in view
+- Implement routes
+    - GET / -- display current stock prices
+    - GET /porfolio -- display personal stocks and cash via database
+- Test functionality with hardcoded data
+- Implement databases
