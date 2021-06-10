@@ -4,5 +4,12 @@
 - Implement routes
     - GET / -- display current stock prices
     - GET /porfolio -- display personal stocks and cash via database
+
+    - index GET / -- show all stocks
+    - show GET /:ticker -- show detail about one stock
+    - show GET /portfolio/:user -- show info about one user
+    - new PUT /portfolio/new -- show new user form
+    - update PUT /portfolio/:user -- update user portfolio
+    - delete DELETE /portfolio/:user -- 
 - Test functionality with hardcoded data
 - Implement databases

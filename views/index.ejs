@@ -2,10 +2,12 @@
 
 <% financeData.forEach(stock => { %>
     <p>
-        <%= stock.symbol %>
+        <a href="/<%= stock.symbol %>"><%= stock.symbol %></a>
         <br>
         <%= stock.name %>
         <br>
         <%= stock.sector %>
     </p>
 <% }) %>
+
+
