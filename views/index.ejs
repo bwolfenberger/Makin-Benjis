@@ -1,2 +1,11 @@
-<%= financeData[0].name %>
-<%= financeData[0].price %>
+<h1>Dow Jones Industrial Average</h1>
+
+<% financeData.forEach(stock => { %>
+    <p>
+        <%= stock.symbol %>
+        <br>
+        <%= stock.name %>
+        <br>
+        <%= stock.sector %>
+    </p>
+<% }) %>
