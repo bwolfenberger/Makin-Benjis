@@ -1,12 +1,16 @@
 const express = require('express')
+const expressLayouts = require('express-ejs-layouts')
 const axios = require('axios')
-const app = express()
-const PORT = 3000
-require('dotenv').config()
-const financeApiKey = process.env.FMP_API_KEY
 const db = require('./models')
+require('dotenv').config()
 
+const PORT = 3000
+const financeApiKey = process.env.FMP_API_KEY
+
+const app = express()
 app.set('view engine', 'ejs')
+app.use(express.urlencoded({ extended:false}))
+app.use(expressLayouts)
 
 app.get('/', (req, res) => {
     let financeUrl = `https://financialmodelingprep.com/api/v3/dowjones_constituent?apikey=${financeApiKey}`
@@ -15,6 +19,10 @@ app.get('/', (req, res) => {
         let financeData = apiRes.data
         res.render('index', { financeData })
     })
+})
+
+app.get('/portfolio/new', (req, res) => {
+    res.render( 'portfolio/new')
 })
 
 app.get('/portfolio/:user', (req, res) => {
