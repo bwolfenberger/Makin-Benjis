@@ -1,6 +1,6 @@
 {
   "development": {
-    "database": "portfolio",
+    "database": "makin_benjis",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

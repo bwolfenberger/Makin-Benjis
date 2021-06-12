@@ -35,6 +35,16 @@ app.get('/portfolio/:user', (req, res) => {
     })
 })
 
+app.get('/transaction/buy', (req, res) => {
+    db.transaction.update({
+        
+
+    })
+
+    res.send(req.query.ticker)
+
+})
+
 app.get('/:ticker', (req, res) => {
     let financeUrl = `https://financialmodelingprep.com/api/v3/quote/${req.params.ticker}?apikey=${financeApiKey}`
     axios.get(financeUrl)

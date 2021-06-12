@@ -8,9 +8,9 @@
     - show GET /:ticker -- show detail about one stock (w/ buy button)
 
     PORTFOLIO
-    - show GET /portfolio/:user -- show info about one user (w/ sell button)(based on transactions)
-    - new get /portfolio/new -- show new user form
-    - create POST /portfolio -- create new user
+    - new get /portfolio/new -- show new portfolio form
+    - create POST /portfolio -- create new portfolio
+    - show GET /portfolio/:user -- show info about one user (w/ sell button)(w/ associated transactions)
     - update PUT /portfolio/:user -- update user portfolio (based on transactions)
 
     TRANSACTIONS

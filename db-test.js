@@ -1,12 +1,20 @@
 const db = require('./models')
 
-// db.user.create({
-//     name: 'benji',
-//     cash: 50000000,
-//     stockId: 4
-// }).then(user => {
-//     console.log(user.name)
+// db.transaction.create({
+//     ticker: 'V',
+//     price: 3.45,
+//     quantity: 20,
+//     portfolioId: 1
+// }).then(newTrans => {
+//     console.log(`${newTrans.quantity} shares of ${newTrans.ticker} purchased for $${newTrans.price} each.}`)
 // })
+
+db.portfolio.create({
+    name: 'benji',
+    cash: 555093,
+}).then(newUser => {
+    console.log(`${newUser.name}'s portfolio created.`)
+})
 
 // db.user.update({
 //     name: 'eri'
