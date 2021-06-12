@@ -40,15 +40,19 @@ const db = require('./models')
 //     })
 // })
 
-db.portfolio.findOne({
-    where: {
-        name: 'eri'
-    }
-}).then(portfolio => {
-    portfolio.getTransactions()
-    .then(transactions => {
-        transactions.forEach(transaction => {
-            console.log(transaction.ticker)
-        })
-    })
+// db.portfolio.findOne({
+//     where: {
+//         name: 'eri'
+//     }
+// }).then(portfolio => {
+//     portfolio.getTransactions()
+//     .then(transactions => {
+//         transactions.forEach(transaction => {
+//             console.log(transaction.ticker)
+//         })
+//     })
+// })
+
+db.transaction.destroy({
+    where: {ticker: 'AMZN'}
 })

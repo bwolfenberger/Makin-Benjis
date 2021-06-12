@@ -2,6 +2,8 @@ const express = require('express')
 const expressLayouts = require('express-ejs-layouts')
 const axios = require('axios')
 const db = require('./models')
+const method_override = require('method-override')
+const { parse } = require('dotenv')
 require('dotenv').config()
 
 const PORT = 3000
@@ -11,6 +13,7 @@ const app = express()
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended:false }))
 app.use(expressLayouts)
+app.use(method_override('_method'))
 
 app.get('/', (req, res) => {
     let financeUrl = `https://financialmodelingprep.com/api/v3/dowjones_constituent?apikey=${financeApiKey}`
@@ -29,13 +32,15 @@ app.get('/portfolio/:user', (req, res) => {
     db.portfolio.findOne({
         where: {name: req.params.user}
     })
+
+    // console.log(portfolio.cash)
     // .then(user => {
     //     res.render( 'portfolio', { user })
     // })
     .then(portfolio => {
         portfolio.getTransactions()
         .then(transactions => {
-            res.render( 'portfolio', {transactions})
+            res.render( 'portfolio', {transactions, portfolio})
             // need to find out if there's a way to pass thru portfolio
         })
     })
@@ -61,6 +66,21 @@ app.post('/transaction/buy', (req, res) => {
 })
     res.redirect('/' + req.body.ticker)
 
+})
+
+app.post('/transaction/sell', (req, res) => {
+    db.portfolio.increment('cash', {
+        by: req.body.price, 
+        where: {
+            name: 'logan'
+        }
+    })
+    
+//     db.transaction.destroy({
+//         where: {ticker: req.body.ticker}
+// })
+// UNCOMMENT WHEN READY TO DELETE TRANSACTIONS
+    res.redirect('/')
 })
 
 app.get('/:ticker', (req, res) => {

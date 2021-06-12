@@ -1,7 +1,22 @@
 
+<h1><%= portfolio.name %></h1>
+<h3>Cash: $<%= portfolio.cash %></h3>
+<br>
+
 <% transactions.forEach(transaction => { %>
-    <h1><%= transaction.ticker %></h1>
+    <strong><%= transaction.ticker %></strong>
+    <br>
     Price: $<%= transaction.price %>
     <br>
     Quantity: <%= transaction.quantity %>
+
+
+    <form action="/transaction/sell" method="POST">
+        <input type="text" name="ticker" value='<%= transaction.ticker %>'>
+        <input type="text" name="price" value='<%= transaction.price %>'>
+        <input type="text" name="quantity" value=1 >
+        <input type="submit" name="buy" value='Sell'>
+    </form>
+    <br>
+
 <% }) %>
