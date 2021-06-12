@@ -9,7 +9,7 @@ const financeApiKey = process.env.FMP_API_KEY
 
 const app = express()
 app.set('view engine', 'ejs')
-app.use(express.urlencoded({ extended:false}))
+app.use(express.urlencoded({ extended:false }))
 app.use(expressLayouts)
 
 app.get('/', (req, res) => {
@@ -35,13 +35,16 @@ app.get('/portfolio/:user', (req, res) => {
     })
 })
 
-app.get('/transaction/buy', (req, res) => {
-    db.transaction.update({
-        
-
-    })
-
-    res.send(req.query.ticker)
+app.post('/transaction/buy', (req, res) => {
+    db.transaction.create({
+    ticker: req.body.ticker,
+    price: req.body.price,
+    quantity: req.body.quantity,
+    portfolioId: 1
+}).then(newTrans => {
+    console.log(`${newTrans.quantity} shares of ${newTrans.ticker} purchased for $${newTrans.price} each for a total of $${newTrans.price * newTrans.quantity}.}`)
+})
+    res.redirect('/' + req.body.ticker)
 
 })
 

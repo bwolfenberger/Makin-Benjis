@@ -18,7 +18,7 @@ Price to Earnings: <%= financeData.pe %>
 <br>
 Shares Outstanding: <%= financeData.sharesOutstanding %>
 <br>
-<form action="/transaction/buy" method="GET">
+<form action="/transaction/buy" method="POST">
     <input type="text" name="ticker" value='<%= financeData.symbol %>'>
     <input type="text" name="price" value='<%= financeData.price %>'>
     <input type="text" name="quantity" value=1 >
