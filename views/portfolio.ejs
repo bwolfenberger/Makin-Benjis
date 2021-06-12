@@ -1,4 +1,7 @@
-<h1><%= user.name %></h1>
-Cash: $<%= user.cash %>
-<br>
-Stock: <%= user.stockId %>
+
+<% transactions.forEach(transaction => { %>
+    <h1><%= transaction.ticker %></h1>
+    Price: $<%= transaction.price %>
+    <br>
+    Quantity: <%= transaction.quantity %>
+<% }) %>

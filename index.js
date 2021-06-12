@@ -26,14 +26,29 @@ app.get('/portfolio/new', (req, res) => {
 })
 
 app.get('/portfolio/:user', (req, res) => {
-    db.user.findOne({
+    db.portfolio.findOne({
         where: {name: req.params.user}
     })
-    .then(user => {
-        console.log(req.params.user)
-        res.render( 'portfolio', { user })
+    // .then(user => {
+    //     res.render( 'portfolio', { user })
+    // })
+    .then(portfolio => {
+        portfolio.getTransactions()
+        .then(transactions => {
+            res.render( 'portfolio', {transactions})
+            // need to find out if there's a way to pass thru portfolio
+        })
     })
 })
+
+// app.get('/portfolio/:user/', (req, res) => {
+//     db.portfolio.findOne({
+//         where: {name: req.params.user}
+//     })
+//     // .then(user => {
+//     //     res.render( 'portfolio', { user })
+//     // })
+// })
 
 app.post('/transaction/buy', (req, res) => {
     db.transaction.create({
