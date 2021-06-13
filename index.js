@@ -56,16 +56,22 @@ app.get('/portfolio/:user', (req, res) => {
 // })
 
 app.post('/transaction/buy', (req, res) => {
+    db.portfolio.decrement('cash', {
+        by: req.body.price,
+        where: {
+            name: 'logan'
+        }
+    })
+
     db.transaction.create({
-    ticker: req.body.ticker,
-    price: req.body.price,
-    quantity: req.body.quantity,
-    portfolioId: 1
+        ticker: req.body.ticker,
+        price: req.body.price,
+        quantity: req.body.quantity,
+        portfolioId: 1
 }).then(newTrans => {
     console.log(`${newTrans.quantity} shares of ${newTrans.ticker} purchased for $${newTrans.price} each for a total of $${newTrans.price * newTrans.quantity}.}`)
 })
-    res.redirect('/' + req.body.ticker)
-
+    res.redirect('/')
 })
 
 app.post('/transaction/sell', (req, res) => {
@@ -76,10 +82,9 @@ app.post('/transaction/sell', (req, res) => {
         }
     })
     
-//     db.transaction.destroy({
-//         where: {ticker: req.body.ticker}
-// })
-// UNCOMMENT WHEN READY TO DELETE TRANSACTIONS
+    db.transaction.destroy({
+        where: {ticker: req.body.ticker}
+})
     res.redirect('/')
 })
 
