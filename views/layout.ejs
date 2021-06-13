@@ -10,7 +10,22 @@
     <nav>
         <a href="/">Stocks</a>
         <br>
-        <a href="/portfolio/logan">Logans portfolio</a>
+        <a id='userLink' href="">script to fill in with current username</a>
+        <br>
+        <a id='signIn' href="">Sign in</a>
+        <a id='signOut' href="">Sign out</a>
+
+        <script>
+            let currentUser = localStorage.getItem('name')
+            if (localStorage.getItem('name') !== null) {
+                document.getElementById('userLink').href=("/portfolio/" + currentUser)
+                document.getElementById('userLink').innerText=(currentUser + "'s portfolio")
+                document.getElementById('signIn').style.display = 'none'
+            } else {
+                document.getElementById('userLink').style.display = 'none'
+                document.getElementById('signOut').style.display = 'none'
+            }
+        </script>
     </nav>
 
     <%- body %>

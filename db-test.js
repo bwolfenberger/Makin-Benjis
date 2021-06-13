@@ -53,6 +53,6 @@ const db = require('./models')
 //     })
 // })
 
-db.transaction.destroy({
-    where: {ticker: 'AMZN'}
-})
+// db.transaction.destroy({
+//     where: {ticker: 'AMZN'}
+// })

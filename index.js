@@ -74,17 +74,25 @@ app.post('/transaction/buy', (req, res) => {
     res.redirect('/')
 })
 
+// sell stock
 app.post('/transaction/sell', (req, res) => {
-    db.portfolio.increment('cash', {
-        by: req.body.price, 
-        where: {
-            name: 'logan'
-        }
+    // get current stock price from api
+    let financialUrl = `https://financialmodelingprep.com/api/v3/quote/${req.body.ticker}?apikey=${financeApiKey}`
+    axios.get(financialUrl)
+    .then(apiRes => {
+        let financeData = apiRes.data[0].price
+        // increase cash variable by current stock price
+        db.portfolio.increment('cash', {
+            by: financeData, 
+            where: {
+                name: 'logan'
+            }
+        })
+        // delete data from transaction database
+        db.transaction.destroy({
+            where: {ticker: req.body.ticker}
+        })
     })
-    
-    db.transaction.destroy({
-        where: {ticker: req.body.ticker}
-})
     res.redirect('/')
 })
 
