@@ -59,7 +59,7 @@ app.post('/transaction/buy', (req, res) => {
     db.portfolio.decrement('cash', {
         by: req.body.price,
         where: {
-            name: 'logan'
+            name: req.body.user
         }
     })
 
@@ -85,7 +85,7 @@ app.post('/transaction/sell', (req, res) => {
         db.portfolio.increment('cash', {
             by: financeData, 
             where: {
-                name: 'logan'
+                name: req.body.user
             }
         })
         // delete data from transaction database

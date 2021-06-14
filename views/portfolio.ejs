@@ -15,8 +15,17 @@
         <input type="text" name="ticker" value='<%= transaction.ticker %>'>
         <input type="text" name="price" value='<%= transaction.price %>'>
         <input type="text" name="quantity" value=1 >
+        <input type="text" name="user" class="sellUser" value=1 >
         <input type="submit" name="buy" value='Sell'>
     </form>
     <br>
 
+
 <% }) %>
+
+    <script>
+        const inputs = document.getElementsByClassName("sellUser")
+        for (let i = 0; i < inputs.length; i++){
+            inputs[i].value = currentUser
+        }
+    </script>
