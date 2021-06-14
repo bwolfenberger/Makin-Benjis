@@ -24,9 +24,17 @@ app.get('/', (req, res) => {
     })
 })
 
+app.get('/signin', (req, res) => {
+    res.render( 'signin' )
+})
 
-app.get('/portfolio/new', (req, res) => {
-    res.render( 'portfolio/new')
+// on sign-in for submission
+app.post('/signin', (req, res) => {
+    db.portfolio.findOrCreate({
+        where: { name: req.body.name },
+        defaults: { cash: req.body.cash }
+    })
+    res.redirect('/')
 })
 
 app.get('/portfolio/:user', (req, res) => {
