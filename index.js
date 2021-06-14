@@ -67,7 +67,7 @@ app.post('/transaction/buy', (req, res) => {
         ticker: req.body.ticker,
         price: req.body.price,
         quantity: req.body.quantity,
-        portfolioId: 1
+        portfolioName: req.body.user
 }).then(newTrans => {
     console.log(`${newTrans.quantity} shares of ${newTrans.ticker} purchased for $${newTrans.price} each for a total of $${newTrans.price * newTrans.quantity}.}`)
 })

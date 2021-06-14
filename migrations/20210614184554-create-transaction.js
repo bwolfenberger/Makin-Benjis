@@ -17,8 +17,8 @@ module.exports = {
       quantity: {
         type: Sequelize.INTEGER
       },
-      portfolioId: {
-        type: Sequelize.INTEGER
+      portfolioName: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,

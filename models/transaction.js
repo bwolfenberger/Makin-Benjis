@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     ticker: DataTypes.TEXT,
     price: DataTypes.NUMERIC,
     quantity: DataTypes.INTEGER,
-    portfolioId: DataTypes.INTEGER
+    portfolioName: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'transaction',

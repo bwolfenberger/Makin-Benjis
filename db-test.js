@@ -9,12 +9,12 @@ const db = require('./models')
 //     console.log(`${newTrans.quantity} shares of ${newTrans.ticker} purchased for $${newTrans.price} each.}`)
 // })
 
-// db.portfolio.create({
-//     name: 'benji',
-//     cash: 555093,
-// }).then(newUser => {
-//     console.log(`${newUser.name}'s portfolio created.`)
-// })
+db.portfolio.create({
+    name: 'logan',
+    cash: 3208,
+}).then(newUser => {
+    console.log(`${newUser.name}'s portfolio created.`)
+})
 
 // db.user.update({
 //     name: 'eri'
