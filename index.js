@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
     })
 })
 
+
 app.get('/portfolio/new', (req, res) => {
     res.render( 'portfolio/new')
 })
@@ -55,22 +56,29 @@ app.get('/portfolio/:user', (req, res) => {
 //     // })
 // })
 
-app.post('/transaction/buy', (req, res) => {
-    db.portfolio.decrement('cash', {
+// await says to not do anything until this is done
+app.post('/transaction/buy', async (req, res) => {
+    await db.portfolio.decrement('cash', {
         by: req.body.price,
         where: {
-            name: req.body.user
+            name: req.body.currentUser
         }
     })
 
-    db.transaction.create({
+    // find portfolio of current user
+    const myPortfolio = await db.portfolio.findOne({
+        where: {name: req.body.currentUser}
+    })
+
+    // find id of current user's portfolio
+    const myId = myPortfolio.get().id
+
+    await db.transaction.create({
+        portfolioId: myId,
         ticker: req.body.ticker,
         price: req.body.price,
         quantity: req.body.quantity,
-        portfolioName: req.body.user
-}).then(newTrans => {
-    console.log(`${newTrans.quantity} shares of ${newTrans.ticker} purchased for $${newTrans.price} each for a total of $${newTrans.price * newTrans.quantity}.}`)
-})
+    })
     res.redirect('/')
 })
 

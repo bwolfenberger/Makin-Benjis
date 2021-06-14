@@ -9,12 +9,12 @@ const db = require('./models')
 //     console.log(`${newTrans.quantity} shares of ${newTrans.ticker} purchased for $${newTrans.price} each.}`)
 // })
 
-db.portfolio.create({
-    name: 'logan',
-    cash: 3208,
-}).then(newUser => {
-    console.log(`${newUser.name}'s portfolio created.`)
-})
+// db.portfolio.create({
+//     name: 'benji',
+//     cash: 39713,
+// }).then(newUser => {
+//     console.log(`${newUser.name}'s portfolio created.`)
+// })
 
 // db.user.update({
 //     name: 'eri'
@@ -53,6 +53,8 @@ db.portfolio.create({
 //     })
 // })
 
-// db.transaction.destroy({
-//     where: {ticker: 'AMZN'}
+// db.portfolio.destroy({
+//     where: {id: '4'}
 // })
+
+// db.transaction.sync({ alter:true})
