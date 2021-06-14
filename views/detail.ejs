@@ -18,7 +18,7 @@ Price to Earnings: <%= financeData.pe %>
 <br>
 Shares Outstanding: <%= financeData.sharesOutstanding %>
 <br>
-<form action="/transaction/buy" method="POST">
+<form action="/transaction/buy" method="POST" id='buyForm'>
     <input type="text" name="ticker" value='<%= financeData.symbol %>'>
     <input type="text" name="price" value='<%= financeData.price %>'>
     <input type="text" name="quantity" value=1 >
@@ -31,5 +31,11 @@ Shares Outstanding: <%= financeData.sharesOutstanding %>
     for (let i = 0; i < inputs.length; i++){
         inputs[i].value = currentUser
     }
+
+    <%/* hide buy form if not logged in*/%>
+    if (localStorage.getItem('name') == null) {
+        document.getElementById('buyForm').style.display = 'none'
+    }
+
 </script>
 
