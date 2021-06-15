@@ -22,12 +22,17 @@
     </form>
     <br>
 
-
 <% }) %>
 
-    <script>
-        const inputs = document.getElementsByClassName("sellUser")
-        for (let i = 0; i < inputs.length; i++){
-            inputs[i].value = currentUser
-        }
-    </script>
+<form action="/portfolio/delete" method="POST">
+    <input type="text" name="currentUser" class="sellUser" value='' >
+    <input type="submit" name="delete" value='Delete Profile' onclick="localStorage.clear()">
+</form>
+
+<script>
+    const inputs = document.getElementsByClassName("sellUser")
+    for (let i = 0; i < inputs.length; i++){
+        inputs[i].value = currentUser
+    }
+
+</script>

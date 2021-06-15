@@ -46,6 +46,17 @@ app.post('/signin', (req, res) => {
     })
 })
 
+app.post('/portfolio/delete', (req, res) => {
+    // delete data from portfolio database
+    db.portfolio.destroy({
+        where: {name: req.body.currentUser}
+    })
+    res.redirect('/')
+        .catch((err) => {
+        res.status(400)
+    })
+})
+
 app.get('/portfolio/:user', (req, res) => {
     db.portfolio.findOne({
         where: {name: req.params.user}

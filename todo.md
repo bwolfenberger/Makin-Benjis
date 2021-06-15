@@ -23,7 +23,6 @@
 - Implement databases
 
 
-add quantity feature
 add instructions and stock update frequency info
 add delete profile feature on profile page
 add search bar for stocks
