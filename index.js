@@ -22,10 +22,16 @@ app.get('/', (req, res) => {
         let financeData = apiRes.data
         res.render('index', { financeData })
     })
+    .catch((err) => {
+        res.status(400)
+    })
 })
 
 app.get('/signin', (req, res) => {
     res.render( 'signin' )
+    .catch((err) => {
+        res.status(400)
+    })
 })
 
 // on sign-in for submission
@@ -35,6 +41,9 @@ app.post('/signin', (req, res) => {
         defaults: { cash: req.body.cash }
     })
     res.redirect('/')
+    .catch((err) => {
+        res.status(400)
+    })
 })
 
 app.get('/portfolio/:user', (req, res) => {
@@ -49,6 +58,9 @@ app.get('/portfolio/:user', (req, res) => {
             res.render( 'portfolio', {transactions, portfolio})
             // need to find out if there's a way to pass thru portfolio
         })
+    })
+    .catch((err) => {
+        res.status(400)
     })
 })
 
@@ -85,6 +97,9 @@ app.post('/transaction/buy', async (req, res) => {
         quantity: req.body.quantity,
     })
     res.redirect('/')
+    .catch((err) => {
+        res.status(400)
+    })
 })
 
 // sell stock
@@ -107,6 +122,9 @@ app.post('/transaction/sell', (req, res) => {
         })
     })
     res.redirect('/')
+        .catch((err) => {
+        res.status(400)
+    })
 })
 
 app.get('/:ticker', (req, res) => {
@@ -115,6 +133,9 @@ app.get('/:ticker', (req, res) => {
     .then(apiRes => {
         let financeData = apiRes.data[0]
         res.render('detail', { financeData })
+    })
+    .catch((err) => {
+        res.status(400)
     })
 })
 
