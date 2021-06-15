@@ -75,8 +75,13 @@ app.get('/portfolio/:user', (req, res) => {
 
 // await says to not do anything until this is done
 app.post('/transaction/buy', async (req, res) => {
+    let quantity = parseInt(req.body.quantity)
+    let price = parseInt(req.body.price)
+
+    console.log(quantity * price)
+
     await db.portfolio.decrement('cash', {
-        by: req.body.price,
+        by: (quantity * price),
         where: {
             name: req.body.currentUser
         }
@@ -108,12 +113,17 @@ app.post('/transaction/sell', (req, res) => {
     let financialUrl = `https://financialmodelingprep.com/api/v3/quote/${req.body.ticker}?apikey=${financeApiKey}`
     axios.get(financialUrl)
     .then(apiRes => {
-        let financeData = apiRes.data[0].price
-        // increase cash variable by current stock price
+        let financeData = apiRes.data
+        let price = financeData[0].price
+        let quantity = parseInt(req.body.quantity)
+
+        console.log(quantity * price)
+
+        // increase cash variable by current stock price multiplied by quantity owned
         db.portfolio.increment('cash', {
-            by: financeData, 
+            by: (quantity * price), 
             where: {
-                name: req.body.user
+                name: req.body.currentUser
             }
         })
         // delete data from transaction database

@@ -15,7 +15,7 @@
     <form action="/transaction/sell" method="POST">
         <input type="text" name="ticker" value='<%= transaction.ticker %>'>
         <input type="text" name="price" value='<%= transaction.price %>'>
-        <input type="text" name="quantity" value=1 >
+        <input type="text" name="quantity" value= <%= transaction.quantity %>>
         <input type="text" name="currentUser" class="sellUser" value=1 >
         <input type="text" name="transactionId" value='<%= transaction.id %>' >
         <input type="submit" name="buy" value='Sell'>
