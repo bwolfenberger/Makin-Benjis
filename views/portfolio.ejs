@@ -6,9 +6,10 @@
 <% transactions.forEach(transaction => { %>
     <strong><%= transaction.ticker %></strong>
     <br>
-    Price: $<%= transaction.price %>
+    Purchase price: $<%= transaction.price %>
     <br>
     Quantity: <%= transaction.quantity %>
+
 
 
     <form action="/transaction/sell" method="POST">
@@ -16,6 +17,7 @@
         <input type="text" name="price" value='<%= transaction.price %>'>
         <input type="text" name="quantity" value=1 >
         <input type="text" name="currentUser" class="sellUser" value=1 >
+        <input type="text" name="transactionId" value='<%= transaction.id %>' >
         <input type="submit" name="buy" value='Sell'>
     </form>
     <br>

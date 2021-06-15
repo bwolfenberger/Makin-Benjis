@@ -42,13 +42,10 @@ app.get('/portfolio/:user', (req, res) => {
         where: {name: req.params.user}
     })
 
-    // console.log(portfolio.cash)
-    // .then(user => {
-    //     res.render( 'portfolio', { user })
-    // })
     .then(portfolio => {
         portfolio.getTransactions()
         .then(transactions => {
+            console.log(transactions)
             res.render( 'portfolio', {transactions, portfolio})
             // need to find out if there's a way to pass thru portfolio
         })
@@ -106,7 +103,7 @@ app.post('/transaction/sell', (req, res) => {
         })
         // delete data from transaction database
         db.transaction.destroy({
-            where: {ticker: req.body.ticker}
+            where: {id: req.body.transactionId}
         })
     })
     res.redirect('/')
