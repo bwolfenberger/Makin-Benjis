@@ -2,6 +2,7 @@ let express = require('express')
 let db = require('../models')
 let router = express.Router()
 
+//portfolio/delete route
 router.delete('/delete', (req, res) => {
     // delete data from portfolio database
     db.portfolio.destroy({
@@ -31,4 +32,4 @@ router.get('/:user', (req, res) => {
     })
 })
 
-module.exports = router
+module.exports = router 
