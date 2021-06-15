@@ -22,10 +22,10 @@
 - Test functionality with hardcoded data
 - Implement databases
 
-add instructions and stock update frequency info
 add search bar for stocks
-comment
 style
+add instructions and stock update frequency info
+comment
 method override
 add routes and views
 try to display current price vs purchase price

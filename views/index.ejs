@@ -1,6 +1,14 @@
 <h1>Dow Jones Industrial Average</h1>
+<h3>Stock prices are updated each minute</h3>
 
+<form action="/search" method='get'>
+    <input type="text" name='search' placeholder="Enter any stock ticker">
+    <input type="submit" value='search'>
+    <br>
+    Crypto can also be searched by adding "USD" example: "BTCUSD"
+</form>
 <% financeData.forEach(stock => { %>
+
     <p>
         <a href="/<%= stock.symbol %>"><%= stock.symbol %></a>
         <br>

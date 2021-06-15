@@ -43,6 +43,11 @@ app.post('/signin', (req, res) => {
     res.redirect('/')
 })
 
+// search route to find any stock or crypto
+app.get('/search', (req, res) => {
+    res.redirect('/' + req.query.search)
+})
+
 // get more details from api about specific stock
 app.get('/:ticker', (req, res) => {
     let financeUrl = `https://financialmodelingprep.com/api/v3/quote/${req.params.ticker}?apikey=${financeApiKey}`
