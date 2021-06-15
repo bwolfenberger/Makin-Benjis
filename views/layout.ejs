@@ -16,11 +16,14 @@
         <a id='signOut' href="/" onclick="localStorage.clear(); return alert(`Goodbye`)">Sign out</a>
 
         <script>
+            <%/* set currentUser to current value of name stored in local storage*/%>
             let currentUser = localStorage.getItem('name')
-            if (localStorage.getItem('name') !== null) {
+            <%/* if currentUser has a value, show link to current portfolio and signout*/%>
+            if (currentUser !== null) {
                 document.getElementById('userLink').href=("/portfolio/" + currentUser)
                 document.getElementById('userLink').innerText=(currentUser + "'s portfolio")
                 document.getElementById('signIn').style.display = 'none'
+            <%/* else show link to sign in*/%>
             } else {
                 document.getElementById('userLink').style.display = 'none'
                 document.getElementById('signOut').style.display = 'none'

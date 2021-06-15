@@ -10,29 +10,26 @@
     <br>
     Quantity: <%= transaction.quantity %>
 
-
-
     <form action="/transaction/sell" method="POST">
-        <input type="text" name="ticker" value='<%= transaction.ticker %>'>
-        <input type="text" name="price" value='<%= transaction.price %>'>
-        <input type="text" name="quantity" value= <%= transaction.quantity %>>
-        <input type="text" name="currentUser" class="sellUser" value=1 >
-        <input type="text" name="transactionId" value='<%= transaction.id %>' >
+        <input hidden type="text" name="ticker" value='<%= transaction.ticker %>'>
+        <input hidden type="text" name="price" value='<%= transaction.price %>'>
+        <input hidden type="text" name="quantity" value= <%= transaction.quantity %>>
+        <input hidden type="text" name="currentUser" class="sellUser" value=1 >
+        <input hidden type="text" name="transactionId" value='<%= transaction.id %>' >
         <input type="submit" name="buy" value='Sell'>
     </form>
     <br>
-
 <% }) %>
 
 <form action="/portfolio/delete?_method=DELETE" method="POST">
-    <input type="text" name="currentUser" class="sellUser" value='' >
+    <input hidden type="text" name="currentUser" class="sellUser" value='' >
     <input type="submit" name="delete" value='Delete Profile' onclick="localStorage.clear()">
 </form>
 
 <script>
+    <%/* add value of currentUser (from layout) for each transaction and delete form*/%>
     const inputs = document.getElementsByClassName("sellUser")
     for (let i = 0; i < inputs.length; i++){
         inputs[i].value = currentUser
     }
-
 </script>
