@@ -39,7 +39,7 @@ app.get('/signin', (req, res) => {
 app.post('/signin', (req, res) => {
     db.portfolio.findOrCreate({
         where: { name: req.body.name },
-        defaults: { cash: req.body.cash }
+        defaults: { cash: req.body.cash || 0}
     })
     res.redirect('/')
     .catch((err) => {
@@ -47,107 +47,6 @@ app.post('/signin', (req, res) => {
     })
 })
 
-app.delete('/portfolio/delete', (req, res) => {
-    // delete data from portfolio database
-    db.portfolio.destroy({
-        where: {name: req.body.currentUser}
-    })
-    res.redirect('/')
-        .catch((err) => {
-        res.status(400)
-    })
-})
-
-app.get('/portfolio/:user', (req, res) => {
-    db.portfolio.findOne({
-        where: {name: req.params.user}
-    })
-
-    .then(portfolio => {
-        portfolio.getTransactions()
-        .then(transactions => {
-            console.log(transactions)
-            res.render( 'portfolio', {transactions, portfolio})
-            // need to find out if there's a way to pass thru portfolio
-        })
-    })
-    .catch((err) => {
-        res.status(err)
-    })
-})
-
-// app.get('/portfolio/:user/', (req, res) => {
-//     db.portfolio.findOne({
-//         where: {name: req.params.user}
-//     })
-//     // .then(user => {
-//     //     res.render( 'portfolio', { user })
-//     // })
-// })
-
-// await says to not do anything until this is done
-app.post('/transaction/buy', async (req, res) => {
-    let quantity = parseInt(req.body.quantity)
-    let price = parseInt(req.body.price)
-
-    console.log(quantity * price)
-
-    await db.portfolio.decrement('cash', {
-        by: (quantity * price),
-        where: {
-            name: req.body.currentUser
-        }
-    })
-
-    // find portfolio of current user
-    const myPortfolio = await db.portfolio.findOne({
-        where: {name: req.body.currentUser}
-    })
-
-    // find id of current user's portfolio
-    const myId = myPortfolio.get().id
-
-    await db.transaction.create({
-        portfolioId: myId,
-        ticker: req.body.ticker,
-        price: req.body.price,
-        quantity: req.body.quantity,
-    })
-    res.redirect('/')
-    .catch((err) => {
-        res.status(400)
-    })
-})
-
-// sell stock
-app.post('/transaction/sell', (req, res) => {
-    // get current stock price from api
-    let financialUrl = `https://financialmodelingprep.com/api/v3/quote/${req.body.ticker}?apikey=${financeApiKey}`
-    axios.get(financialUrl)
-    .then(apiRes => {
-        let financeData = apiRes.data
-        let price = financeData[0].price
-        let quantity = parseInt(req.body.quantity)
-
-        console.log(quantity * price)
-
-        // increase cash variable by current stock price multiplied by quantity owned
-        db.portfolio.increment('cash', {
-            by: (quantity * price), 
-            where: {
-                name: req.body.currentUser
-            }
-        })
-        // delete data from transaction database
-        db.transaction.destroy({
-            where: {id: req.body.transactionId}
-        })
-    })
-    res.redirect('/')
-        .catch((err) => {
-        res.status(400)
-    })
-})
 
 app.get('/:ticker', (req, res) => {
     let financeUrl = `https://financialmodelingprep.com/api/v3/quote/${req.params.ticker}?apikey=${financeApiKey}`
@@ -161,11 +60,11 @@ app.get('/:ticker', (req, res) => {
     })
 })
 
+// Import portfolio and transaction controllers
+app.use('/portfolio', require('./controllers/portfolio'))
+app.use('/transaction', require('./controllers/transaction'))
+
 app.listen(PORT, () => {
     console.log(`listening to ${PORT} 🐣`)
 })
 
-{/* <form action="GET" method= "/:ticker">
-    <input type="text" name="ticker">
-    <input type="submit">
-</form> */}
