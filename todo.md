@@ -22,9 +22,9 @@
 - Test functionality with hardcoded data
 - Implement databases
 
-
+method override
+add routes and views
 add instructions and stock update frequency info
-add delete profile feature on profile page
 add search bar for stocks
 comment
 style

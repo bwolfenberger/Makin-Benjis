@@ -30,6 +30,7 @@ app.get('/', (req, res) => {
 app.get('/signin', (req, res) => {
     res.render( 'signin' )
     .catch((err) => {
+        console.log(err)
         res.status(400)
     })
 })
@@ -46,7 +47,7 @@ app.post('/signin', (req, res) => {
     })
 })
 
-app.post('/portfolio/delete', (req, res) => {
+app.delete('/portfolio/delete', (req, res) => {
     // delete data from portfolio database
     db.portfolio.destroy({
         where: {name: req.body.currentUser}
@@ -71,7 +72,7 @@ app.get('/portfolio/:user', (req, res) => {
         })
     })
     .catch((err) => {
-        res.status(400)
+        res.status(err)
     })
 })
 

@@ -24,7 +24,7 @@
 
 <% }) %>
 
-<form action="/portfolio/delete" method="POST">
+<form action="/portfolio/delete?_method=DELETE" method="POST">
     <input type="text" name="currentUser" class="sellUser" value='' >
     <input type="submit" name="delete" value='Delete Profile' onclick="localStorage.clear()">
 </form>
