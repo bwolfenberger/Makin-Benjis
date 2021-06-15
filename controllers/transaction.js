@@ -5,18 +5,15 @@ let router = express.Router()
 
 const financeApiKey = process.env.FMP_API_KEY
 
-// await says to not do anything until this is done
+// buy route alters both tables
 router.post('/buy', async (req, res) => {
+    // define variables to determine total value
     let quantity = parseInt(req.body.quantity)
     let price = parseInt(req.body.price)
 
-    console.log(quantity * price)
-
     await db.portfolio.decrement('cash', {
         by: (quantity * price),
-        where: {
-            name: req.body.currentUser
-        }
+        where: { name: req.body.currentUser }
     })
 
     // find portfolio of current user
@@ -24,9 +21,10 @@ router.post('/buy', async (req, res) => {
         where: {name: req.body.currentUser}
     })
 
-    // find id of current user's portfolio
+    // find id of current portfolio
     const myId = myPortfolio.get().id
 
+    // create new transaction associated with current portfolio
     await db.transaction.create({
         portfolioId: myId,
         ticker: req.body.ticker,
@@ -39,35 +37,31 @@ router.post('/buy', async (req, res) => {
     })
 })
 
-// sell stock
+// sell route alters both tables
 router.post('/sell', (req, res) => {
     // get current stock price from api
     let financialUrl = `https://financialmodelingprep.com/api/v3/quote/${req.body.ticker}?apikey=${financeApiKey}`
     axios.get(financialUrl)
     .then(apiRes => {
+        // define variables to determine value
         let financeData = apiRes.data
         let price = financeData[0].price
         let quantity = parseInt(req.body.quantity)
 
-        console.log(quantity * price)
-
-        // increase cash variable by current stock price multiplied by quantity owned
+        // increase cash variable by value
         db.portfolio.increment('cash', {
             by: (quantity * price), 
-            where: {
-                name: req.body.currentUser
-            }
+            where: { name: req.body.currentUser }
         })
-        // delete data from transaction database
+        // delete transaction by unique id
         db.transaction.destroy({
             where: {id: req.body.transactionId}
         })
     })
     res.redirect('/')
-        .catch((err) => {
-        res.status(400)
+    .catch((err) => {
+    res.status(400)
     })
 })
-
 
 module.exports = router

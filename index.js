@@ -3,7 +3,6 @@ const expressLayouts = require('express-ejs-layouts')
 const axios = require('axios')
 const db = require('./models')
 const method_override = require('method-override')
-const { parse } = require('dotenv')
 require('dotenv').config()
 
 const PORT = 3000
@@ -15,6 +14,7 @@ app.use(express.urlencoded({ extended:false }))
 app.use(expressLayouts)
 app.use(method_override('_method'))
 
+// home route to display initial stocks
 app.get('/', (req, res) => {
     let financeUrl = `https://financialmodelingprep.com/api/v3/dowjones_constituent?apikey=${financeApiKey}`
     axios.get(financeUrl)
@@ -23,31 +23,27 @@ app.get('/', (req, res) => {
         res.render('index', { financeData })
     })
     .catch((err) => {
-        res.status(400)
-    })
-})
-
-app.get('/signin', (req, res) => {
-    res.render( 'signin' )
-    .catch((err) => {
         console.log(err)
         res.status(400)
     })
 })
 
-// on sign-in for submission
+// route to new portfolio form
+app.get('/signin', (req, res) => {
+    res.render( 'signin' )
+})
+
+// find current or create new portfolio on form submission
 app.post('/signin', (req, res) => {
     db.portfolio.findOrCreate({
         where: { name: req.body.name },
+        // || 0 added if no value is added to cash for new portfolio
         defaults: { cash: req.body.cash || 0}
     })
     res.redirect('/')
-    .catch((err) => {
-        res.status(400)
-    })
 })
 
-
+// get more details from api about specific stock
 app.get('/:ticker', (req, res) => {
     let financeUrl = `https://financialmodelingprep.com/api/v3/quote/${req.params.ticker}?apikey=${financeApiKey}`
     axios.get(financeUrl)
@@ -67,4 +63,3 @@ app.use('/transaction', require('./controllers/transaction'))
 app.listen(PORT, () => {
     console.log(`listening to ${PORT} 🐣`)
 })
-
