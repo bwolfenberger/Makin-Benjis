@@ -22,7 +22,6 @@
 - Test functionality with hardcoded data
 - Implement databases
 
-add search bar for stocks
 style
 add instructions and stock update frequency info
 comment
