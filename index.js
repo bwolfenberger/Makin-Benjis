@@ -36,6 +36,7 @@ app.get('/signin', (req, res) => {
 
 // find current or create new portfolio on form submission
 app.post('/signin', (req, res) => {
+    // convert name input to lower case
     let lcName = req.body.name.toLowerCase()
     console.log(lcName)
     db.portfolio.findOrCreate({
