@@ -70,6 +70,6 @@ app.get('/:ticker', (req, res) => {
 app.use('/portfolio', require('./controllers/portfolio'))
 app.use('/transaction', require('./controllers/transaction'))
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log(`listening to ${PORT} 🐣`)
 })
