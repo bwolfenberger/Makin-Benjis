@@ -46,7 +46,10 @@ app.post('/signin', (req, res) => {
 
 // search route to find any stock or crypto
 app.get('/search', (req, res) => {
-    res.redirect('/' + req.query.search)
+    // convert search to uppercase
+    let ucSearch = req.query.search.toUpperCase()
+    console.log(ucSearch)
+    res.redirect('/' + ucSearch)
 })
 
 // get more details from api about specific stock
