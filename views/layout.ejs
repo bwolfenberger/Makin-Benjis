@@ -1,37 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Makin Benjis</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-</head>
-<body>
-    <div class='container'>
-        <nav class='navbar navbar-light bg-light'>
-            <a class='btn btn-outline-primary' href="/">Stocks</a>
-            <a class='btn btn-outline-primary' id='userLink' href="">script to fill in with current username</a>
-            <a class='btn btn-outline-primary' id='signIn' href="/signin">Sign in</a>
-            <a class='btn btn-outline-primary' id='signOut' href="/" onclick="localStorage.clear(); return alert(`Goodbye`)">Sign out</a>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Makin Benjis</title>
+        <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x' crossorigin='anonymous'>
+    </head>
+    <body>
+        <div class='container'>
+            <nav class='navbar navbar-light bg-light'>
+                <a class='btn btn-outline-primary' href='/'>Stocks</a>
+                <a class='btn btn-outline-primary' id='userLink'></a>
+                <a class='btn btn-outline-primary' id='signIn' href='/signin'>Sign in</a>
+                <a class='btn btn-outline-primary' id='signOut' href='/' onclick='localStorage.clear(); return alert(`Goodbye`)'>Sign out</a>
 
-            <script>
-                <%/* set currentUser to current value of name stored in local storage*/%>
-                let currentUser = localStorage.getItem('name')
-                <%/* if currentUser has a value, show link to current portfolio and signout*/%>
-                if (currentUser !== null) {
-                    document.getElementById('userLink').href=("/portfolio/" + currentUser)
-                    document.getElementById('userLink').innerText=(currentUser + "'s portfolio")
-                    document.getElementById('signIn').style.display = 'none'
-                <%/* else show link to sign in*/%>
-                } else {
-                    document.getElementById('userLink').style.display = 'none'
-                    document.getElementById('signOut').style.display = 'none'
-                }
-            </script>
-        </nav>
+                <script>
+                    <%/* set currentUser to current value of name stored in local storage*/%>
+                    let currentUser = localStorage.getItem('name')
+                    <%/* if currentUser has a value, show link to current portfolio and signout*/%>
+                    if (currentUser !== null) {
+                        document.getElementById('userLink').href=('/portfolio/' + currentUser)
+                        document.getElementById('userLink').innerText=(currentUser + "'s portfolio")
+                        document.getElementById('signIn').style.display = 'none'
+                    <%/* else show link to sign in*/%>
+                    } else {
+                        document.getElementById('userLink').style.display = 'none'
+                        document.getElementById('signOut').style.display = 'none'
+                    }
+                </script>
+            </nav>
 
-        <%- body %>
-    </div>
-</body>
+            <%- body %>
+        </div>
+    </body>
 </html>

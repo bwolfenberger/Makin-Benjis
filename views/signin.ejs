@@ -1,8 +1,8 @@
 <h1 class='display-6'>Welcome, please enter name and desired starting cash to create a new portfolio.</h1>
 <p>If portfolio already exists, just enter name to login!</p>
 
-<form class='form-inline' action="/signin" method="POST" onsubmit='localStorage.setItem("name", name.value.toLowerCase())'>
-    <input type="text" class='input-small' name="name" placeholder='Name'>
-    <input type="text" class='input-small' name="cash" placeholder='Starting cash (if new)'>
-    <input class='btn btn-info text-white btn-sm'type="submit" name="signin" value='signin' >
+<form class='form-inline' action='/signin' method='POST' onsubmit='localStorage.setItem("name", name.value.toLowerCase())'>
+    <input type='text' class='input-small' name='name' placeholder='Name'>
+    <input type='text' class='input-small' name='cash' placeholder='Starting cash (if new)'>
+    <input class='btn btn-info text-white btn-sm' type='submit' name='signin' value='signin' >
 </form>

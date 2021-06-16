@@ -10,7 +10,6 @@ const financeApiKey = process.env.FMP_API_KEY
 
 const app = express()
 app.set('view engine', 'ejs')
-// app.use(express.static(__dirname + '/public/'))
 app.use(express.urlencoded({ extended:false }))
 app.use(expressLayouts)
 app.use(method_override('_method'))
@@ -41,7 +40,7 @@ app.post('/signin', (req, res) => {
     console.log(lcName)
     db.portfolio.findOrCreate({
         where: { name: lcName },
-        // || 0 added if no value is added to cash for new portfolio
+        // 0 added if no value is added to cash for new portfolio
         defaults: { cash: req.body.cash || 0}
     })
     res.redirect('/')

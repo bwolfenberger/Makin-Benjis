@@ -4,19 +4,19 @@
 <br>
 
 <% transactions.forEach(transaction => { %>
-    <div class="card w-50 border-primary">
-        <div class="card-body">
+    <div class='card w-50 border-primary'>
+        <div class='card-body'>
             <h5 class='card-title'><%= transaction.ticker %></h5>
-            <p class="card-text">Purchase price: $<%= transaction.price %></p>
-            <p class="card-text">Quantity: <%= transaction.quantity %></p>
+            <p class='card-text'>Purchase price: $<%= transaction.price %></p>
+            <p class='card-text'>Quantity: <%= transaction.quantity %></p>
 
-            <form action="/transaction/sell" method="POST">
-                <input hidden type="text" name="ticker" value='<%= transaction.ticker %>'>
-                <input hidden type="text" name="price" value='<%= transaction.price %>'>
-                <input hidden type="text" name="quantity" value= <%= transaction.quantity %>>
-                <input hidden type="text" name="currentUser" class="sellUser" value=1 >
-                <input hidden type="text" name="transactionId" value='<%= transaction.id %>' >
-                <input class='btn btn-primary' type="submit" name="buy" value='Sell'>
+            <form action='/transaction/sell' method='POST'>
+                <input hidden type='text' name='ticker' value='<%= transaction.ticker %>'>
+                <input hidden type='text' name='price' value='<%= transaction.price %>'>
+                <input hidden type='text' name='quantity' value= <%= transaction.quantity %>>
+                <input hidden type='text' name='currentUser' class='sellUser' >
+                <input hidden type='text' name='transactionId' value='<%= transaction.id %>' >
+                <input class='btn btn-primary' type='submit' name='sell' value='sell'>
             </form>
             <br>
         </div>
@@ -24,14 +24,14 @@
     <br>
 <% }) %>
 <br>
-<form action="/portfolio/delete?_method=DELETE" method="POST">
-    <input hidden type="text" name="currentUser" class="sellUser" value='' >
-    <input class='btn btn-danger' type="submit" name="delete" value='Delete Profile' onclick="localStorage.clear()">
+<form action='/portfolio/delete?_method=DELETE' method='POST'>
+    <input hidden type='text' name='currentUser' class='sellUser' >
+    <input class='btn btn-danger' type='submit' name='delete' value='Delete Profile' onclick='localStorage.clear()'>
 </form>
 
 <script>
     <%/* add value of currentUser (from layout) for each transaction and delete form*/%>
-    const inputs = document.getElementsByClassName("sellUser")
+    const inputs = document.getElementsByClassName('sellUser')
     for (let i = 0; i < inputs.length; i++){
         inputs[i].value = currentUser
     }

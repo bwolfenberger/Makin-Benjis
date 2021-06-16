@@ -1,35 +1,37 @@
-<h2><%= financeData.name %></h2>
-<br>
-Price: $<%= financeData.price %>
-<br>
-Day Low: $<%= financeData.dayLow %>
-<br>
-Day High: $<%= financeData.dayHigh %>
-<br>
-Market Cap: $<%= financeData.marketCap %>
-<br>
-Volume: <%= financeData.volume %>
-<br>
-Exchange: <%= financeData.exchange %>
-<br>
-Earnings Per Share: <%= financeData.eps %>
-<br>
-Price to Earnings: <%= financeData.pe %>
-<br>
-Shares Outstanding: <%= financeData.sharesOutstanding %>
-<br>
-
-<form action="/transaction/buy" method="POST" id='buyForm'>
-    <input hidden type="text" name="ticker" value='<%= financeData.symbol %>'>
-    <input hidden type="text" name="price" value='<%= financeData.price %>'>
-    <input hidden type="text" name='currentUser' class='buyUser' value=1>
-    <input type="text" name="quantity" placeholder='Enter quantity' >
-    <input type="submit" name="buy" value='Buy'>
-</form>
-
+<div class='card w-50'>
+    <div class='card-body'>
+        <h2><%= financeData.name %></h2>
+        Price: $<%= financeData.price %>
+        <br>
+        Day Low: $<%= financeData.dayLow %>
+        <br>
+        Day High: $<%= financeData.dayHigh %>
+        <br>
+        Market Cap: $<%= financeData.marketCap %>
+        <br>
+        Volume: <%= financeData.volume %>
+        <br>
+        Exchange: <%= financeData.exchange %>
+        <br>
+        Earnings Per Share: <%= financeData.eps %>
+        <br>
+        Price to Earnings: <%= financeData.pe %>
+        <br>
+        Shares Outstanding: <%= financeData.sharesOutstanding %>
+        <br>
+        <form action='/transaction/buy' method='POST' id='buyForm'>
+            <input hidden type='text' name='ticker' value='<%= financeData.symbol %>'>
+            <input hidden type='text' name='price' value='<%= financeData.price %>'>
+            <input hidden type='text' name='currentUser' class='buyUser'>
+            <input type='text' name='quantity' placeholder='Enter quantity' >
+            <input class='btn btn-success' type='submit' name='buy' value='Buy'>
+        </form>
+    </div>
+</div>
+    
 <script>
     <%/* add value of currentUser (from layout) for each transaction*/%>
-    const inputs = document.getElementsByClassName("buyUser")
+    const inputs = document.getElementsByClassName('buyUser')
     for (let i = 0; i < inputs.length; i++){
         inputs[i].value = currentUser
     }

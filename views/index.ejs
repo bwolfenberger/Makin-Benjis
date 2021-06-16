@@ -1,19 +1,19 @@
 <h1 class='display-3'>Dow Jones Industrial Average</h1>
 <h6 class='display-6'>Stock prices are updated each minute</h6>
 
-    <form class='form-inline' action="/search" method='get'>
-            <input type="text" class='input-small' name='search' placeholder="Search stock ticker...">
-            <input type="submit" class='btn btn-info text-white btn-sm' value='search'>
-            <small class='form-text text-muted'>Crypto can also be searched by adding "USD" example: "BTCUSD"</small>
-    </form>
+<form class='form-inline' action='/search' method='get'>
+    <input type='text' class='input-small' name='search' placeholder='Search stock ticker...'>
+    <input type='submit' class='btn btn-info text-white btn-sm' value='search'>
+    <small class='form-text text-muted'>Crypto can also be searched by adding "USD" example: "BTCUSD"</small>
+</form>
 <br>
 
 <ul class='list-group'>
-<% financeData.forEach(stock => { %>
-    <li class='list-group-item'>
-        <a class='btn btn-outline-info' href="/<%= stock.symbol %>"><%= stock.symbol %></a>
-        <%= stock.name %>
-<% }) %>
-    </li>
+    <% financeData.forEach(stock => { %>
+        <li class='list-group-item'>
+            <a class='btn btn-outline-info' href="/<%= stock.symbol %>"><%= stock.symbol %></a>
+            <%= stock.name %>
+        </li>
+    <% }) %>
 </ul>
 
