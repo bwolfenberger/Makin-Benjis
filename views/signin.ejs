@@ -1,7 +1,7 @@
 <h3>Welcome, please enter name and desired starting cash to create a new portfolio.</h3>
 <h3>If portfolio already exists, just enter name to login!</h3>
 
-<form action="/signin" method="POST" onsubmit='localStorage.setItem("name", name.value)'>
+<form action="/signin" method="POST" onsubmit='localStorage.setItem("name", name.value.toLowerCase())'>
     <input type="text" name="name" placeholder='Name'>
     <input type="text" name="cash" placeholder='Starting cash (if new)'>
     <input type="submit" name="signin" value='signin' >

@@ -36,8 +36,10 @@ app.get('/signin', (req, res) => {
 
 // find current or create new portfolio on form submission
 app.post('/signin', (req, res) => {
+    let lcName = req.body.name.toLowerCase()
+    console.log(lcName)
     db.portfolio.findOrCreate({
-        where: { name: req.body.name },
+        where: { name: lcName },
         // || 0 added if no value is added to cash for new portfolio
         defaults: { cash: req.body.cash || 0}
     })
@@ -48,7 +50,6 @@ app.post('/signin', (req, res) => {
 app.get('/search', (req, res) => {
     // convert search to uppercase
     let ucSearch = req.query.search.toUpperCase()
-    console.log(ucSearch)
     res.redirect('/' + ucSearch)
 })
 
