@@ -55,21 +55,23 @@ create database and update the config.json file then you will be ready to go!
 
 Makin Benjis is an asset portfolio simulator for replicating the purchase of stocks and crypto currencies.
 
-I built this application to help teach new investors learn and test out different portfolio strategies.
+I built this application to help new investors learn and test out different portfolio strategies.
 
-Database management and RESTful routing was an emphasis for this project which implements local storage for user login and portfolio data.
+Database management and RESTful routing was an emphasis for this project which implements local storage for user login.
 
 ### Built With
 
-* [Express.js](https://nextjs.org/)
-* [EJS](https://www.typescriptlang.org/)
-* [Sequelize](https://www.typescriptlang.org/)
-* [PostgresSQL](https://www.typescriptlang.org/)
-* [Axios](https://www.javascript.com/)
-* [RESTful API](https://www.javascript.com/)
-* [BootStrap](https://www.javascript.com/)
+* [Express.js](https://expressjs.com/)
+* [EJS](https://ejs.co/)
+* [Sequelize](https://sequelize.org/)
+* [PostgreSQL](https://www.postgresql.org/)
+* [Axios](https://axios-http.com/)
+* [RESTful API](https://restfulapi.net/)
+* [BootStrap 5](https://getbootstrap.com/)
+* [Node.js](https://nodejs.org/en/)
 * [JavaScript](https://www.javascript.com/)
-* [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+* [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+* [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 
 
 <!-- GETTING STARTED -->
@@ -86,20 +88,19 @@ To get started you will have to clone down the code then follow along with the b
 
 ### Installation
 
-1. Get a free API Key at [https://quizapi.io](https://quizapi.io/docs/1.0/overview)
+1. Get a free API Key at [https://financialmodelingprep.com](https://financialmodelingprep.com/developer)
 2. Clone the repo
    ```sh
-   git clone https://github.com/bwolfenberger/Qwizard.git
+   git clone https://github.com/bwolfenberger/Makin-Benjis.git
    ```
 3. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `.env.local`
+4. Enter your API in `.env`
    ```JS
-   QUIZ_API_KEY = 'ENTER YOUR API'
+   FMP_API_KEY = 'ENTER YOUR API Key'
    ```
-
 
 
 <!-- USAGE EXAMPLES -->
@@ -114,7 +115,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_ --
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/bwolfenberger/Qwizard/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/bwolfenberger/Makin-Benjis/issues) for a list of proposed features (and known issues).
 
 
 <!-- CONTRIBUTING -->
@@ -134,4 +135,4 @@ Contributions are what make the open source community such an amazing place to b
 
 Benji Wolfenberger - bwolfenberger@gmail.com
 
-Project Link: [https://github.com/bwolfenberger/Qwizard](https://github.com/bwolfenberger/Qwizard)
+Project Link: [https://github.com/bwolfenberger/Makin-Benjis](https://github.com/bwolfenberger/Makin-Benjis)
