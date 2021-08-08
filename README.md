@@ -45,7 +45,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Makin Benjis Screenshot](MakinBenjisScreenshot.jpg)
+![Makin Benjis Screenshot](makinBenjisScreenshot.jpg)
 
 Makin Benjis is an asset portfolio simulator for replicating the purchase of stocks and crypto currencies.
 
