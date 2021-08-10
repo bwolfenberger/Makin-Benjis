@@ -3,7 +3,7 @@
   <h1 align="center">Makin Benjis</h1>
 
   <p align="center">
-    A stock portfolio simulator utilizing RESTful API
+    A stock portfolio simulator utilizing REST API
     <br />
     <a href="https://makin-benjis.herokuapp.com/"><strong>Live Site »</strong></a>
     <br />
